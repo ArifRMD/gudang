@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="card">
+            <div class="body">
+                <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Kategori</label>
+                            <select name="kategori" id="" class="form-control">
+                                {% for kategori in kategori %}
+                                    {% if get_item.kategori == kategori %}
+                                        <option value="{{kategori.nama}}" selected="selected">{{ kategori.nama }}</option>
+                                    {% else %}
+                                        <option value="{{kategori.nama}}">{{ kategori.nama }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nama</label>
+                        <input type="text" class="form-control" name="Nama" value="{{get_item.nama}}">
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Jumlah</label>
+                            <input type="text" class="form-control" name="jumlah" value="{{get_item.jumlah}}">
+                        </div> 
+                        <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label"> Deskripsi </label>
+                        <textarea name="Deskripsi"class="form-control" placeholder="Deskripsi Here"  style="height: 100px">{{get_item.Deskripsi}}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
